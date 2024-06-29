@@ -14,7 +14,6 @@ public sealed class Node<T>
     public Node<T>? Next { get; internal set; }
     public Node<T>? Prev { get; internal set; }
 
-
     public Node(T item)
     {
         Item = item;
@@ -24,6 +23,7 @@ public sealed class Node<T>
 
 public class LinkedList<T> : IEnumerable<T>
 {
+    private readonly EqualityComparer<T> comparer = EqualityComparer<T>.Default;
     public Node<T>? Head { get; protected set; }
     public Node<T>? Tail { get; protected set; }
 
@@ -75,4 +75,201 @@ public class LinkedList<T> : IEnumerable<T>
     // --------------------------------------------------------------
 
 
+    public void AddFront(T item)
+    {
+        Node<T> newNode = new Node<T>(item);
+        AddFront(newNode);
+    }
+    public void AddFront(Node<T> node)
+    {
+        if (IsEmpty)
+        {
+            Head = node;
+            Tail = node;
+        }
+        else
+        {
+            Node<T> poppedOffHead = Head;
+            Head = node;
+            Head.Next = poppedOffHead;
+            poppedOffHead.Prev = Head;
+        }
+
+    }
+
+    public void AddBack(T item)
+    {
+        Node<T> newNode = new Node<T>(item);
+        AddBack(newNode);
+    }
+    public void AddBack(Node<T> node)
+    {
+
+        if (IsEmpty)
+        {
+            Head = node;
+            Tail = node;
+        }
+        else
+        {
+            Node<T> poppedOffTail = Tail;
+            Tail = node;
+            Tail.Prev = poppedOffTail;
+            poppedOffTail.Next = Tail;
+        }
+    }
+
+    public Node<T>? Find(T item)
+    {
+        if (IsEmpty)
+        {
+            return null;
+        }
+
+        else
+        {
+            Node<T> nextNode = Head;
+            while (nextNode != null)
+            {
+                if (comparer.Equals(item, nextNode.Item))
+                {
+                    return nextNode;
+                }
+                else
+                {
+                    nextNode = nextNode.Next!;
+                }
+
+            }
+
+            return null;
+        }
+    }
+    public void InsertAfter(Node<T> node, T item)
+    {
+        Node<T> newNode = new Node<T>(item);
+        InsertAfter(node, newNode);
+    }
+    public void InsertAfter(Node<T> node, Node<T> newNode)
+    {
+
+
+        if (!IsEmpty)
+        {
+            // node.next being null means that this node 
+            // we are inserting after is the tail
+            if (node.Next == null)
+            {
+                newNode.Prev = Tail;
+                Tail.Next = newNode;
+                Tail = newNode;
+            }
+            else
+            {
+                newNode.Prev = node;
+                newNode.Next = node.Next;
+                node.Next.Prev = newNode;
+                node.Next = newNode;
+
+            }
+
+        }
+    }
+
+
+    public void InsertBefore(Node<T> node, T item)
+    {
+        Node<T> newNode = new Node<T>(item);
+        InsertBefore(node, newNode);
+    }
+    public void InsertBefore(Node<T> node, Node<T> newNode)
+    {
+
+        if (!IsEmpty)
+        {
+
+
+            // if node.Prev == null is true, this means that this node is the head 
+            if (node.Prev == null)
+            {
+                Head.Prev = newNode;
+                newNode.Next = Head;
+                Head = newNode;
+            }
+            else
+            {
+                newNode.Next = node;
+                newNode.Prev = node.Prev;
+                node.Prev.Next = newNode;
+                node.Prev = newNode;
+            }
+        }
+    }
+
+    public void Remove(Node<T> node)
+    {
+        if (!IsEmpty)
+        {
+            // If node is head 
+            if (node.Prev == null)
+            {
+                if (node.Next != null)
+                {
+                    Head = node.Next;
+                    Head.Prev = null;
+
+                }
+                else
+                {
+                    Head = null;
+                    Tail = null; // since the other if statement being false
+                                 // means that there is only 1 element in the list
+                }
+            }
+
+            // If node is tail
+            else if (node.Next == null)
+            {
+                if (node.Prev != null)
+                {
+                    Tail = node.Prev;
+                    Tail.Next = null;
+                }
+                else
+                {
+                    Tail = null;
+                    Head = null; // since the other if statement being false
+                                 // means that there is only 1 element in the list
+                }
+            }
+            else
+            {
+                node.Prev.Next = node.Next;
+                node.Next.Prev = node.Prev;
+            }
+
+
+
+        }
+
+
+    }
+    public void Remove(T item)
+    {
+
+        Node<T> nodeToRemove = Find(item);
+        if (nodeToRemove != null)
+        {
+            Remove(nodeToRemove);
+        }
+    }
+
+    public LinkedList<T> SplitAfter(Node<T> node) { return new LinkedList<T>(); }
+
+    public void AppendAll(LinkedList<T> otherList) { }
+
 }
+
+
+
+

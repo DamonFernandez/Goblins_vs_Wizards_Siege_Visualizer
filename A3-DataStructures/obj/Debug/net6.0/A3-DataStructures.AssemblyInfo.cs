@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("A3-DataStructures")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+041343fc7efc73f2cd467dcf777dcd1411949d55")]
 [assembly: System.Reflection.AssemblyProductAttribute("A3-DataStructures")]
 [assembly: System.Reflection.AssemblyTitleAttribute("A3-DataStructures")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
