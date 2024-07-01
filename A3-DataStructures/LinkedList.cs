@@ -70,9 +70,6 @@ public class LinkedList<T> : IEnumerable<T>
     }
 
 
-    // --------------------------------------------------------------
-    // Put your code down here:
-    // --------------------------------------------------------------
 
 
     public void AddFront(T item)
@@ -264,9 +261,42 @@ public class LinkedList<T> : IEnumerable<T>
         }
     }
 
-    public LinkedList<T> SplitAfter(Node<T> node) { return new LinkedList<T>(); }
+    public LinkedList<T> SplitAfter(Node<T> node)
+    {
 
-    public void AppendAll(LinkedList<T> otherList) { }
+
+        // Node is tail
+        if (node.Next == null)
+        {
+            return new LinkedList<T>();
+        }
+
+        else
+        {
+            Tail = node;
+
+            LinkedList<T> newLinkedList = new LinkedList<T>();
+            newLinkedList.AddFront(node.Next);
+            node.Next.Prev = null;
+            node.Next = null;
+            return newLinkedList;
+        }
+
+    }
+
+    public void AppendAll(LinkedList<T> otherList)
+    {
+        if (otherList.Head != null)
+        {
+            AddBack(otherList.Head);
+            Tail = otherList.Tail;
+        }
+
+        // Removes all nodes from otherList
+        otherList.Head = null;
+        otherList.Tail = null;
+
+    }
 
 }
 
