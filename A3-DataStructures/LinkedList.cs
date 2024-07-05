@@ -1,4 +1,4 @@
-namespace COIS2020./* FirstnameLastnameStudentnumber */.Assignment3;
+namespace COIS2020.DamonFernandez0813575.Assignment3;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -27,11 +27,16 @@ public class LinkedList<T> : IEnumerable<T>
     public Node<T>? Head { get; protected set; }
     public Node<T>? Tail { get; protected set; }
 
+    public uint Count { get; protected set; }
+
+
 
     public LinkedList()
     {
         Head = null;
         Tail = null;
+        Count = 0;
+
     }
 
 
@@ -91,6 +96,8 @@ public class LinkedList<T> : IEnumerable<T>
             Head.Next = poppedOffHead;
             poppedOffHead.Prev = Head;
         }
+        Count++;
+
 
     }
 
@@ -114,6 +121,8 @@ public class LinkedList<T> : IEnumerable<T>
             Tail.Prev = poppedOffTail;
             poppedOffTail.Next = Tail;
         }
+        Count++;
+
     }
 
     public Node<T>? Find(T item)
@@ -170,6 +179,9 @@ public class LinkedList<T> : IEnumerable<T>
 
             }
 
+            Count++;
+
+
         }
     }
 
@@ -200,6 +212,9 @@ public class LinkedList<T> : IEnumerable<T>
                 node.Prev.Next = newNode;
                 node.Prev = newNode;
             }
+
+            Count++;
+
         }
     }
 
@@ -244,6 +259,8 @@ public class LinkedList<T> : IEnumerable<T>
                 node.Prev.Next = node.Next;
                 node.Next.Prev = node.Prev;
             }
+
+            Count--;
 
 
 

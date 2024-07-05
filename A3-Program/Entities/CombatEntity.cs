@@ -1,4 +1,4 @@
-namespace COIS2020./* FirstnameLastnameStudentnumber */.Assignment3;
+namespace COIS2020.DamonFernandez0813575.Assignment3;
 
 using Microsoft.Xna.Framework;
 

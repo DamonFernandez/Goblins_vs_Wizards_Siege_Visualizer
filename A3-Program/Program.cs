@@ -1,6 +1,7 @@
+
 global using static Program; // Makes static fields on Program available globally (for `RNG`).
 
-using COIS2020./* FirstnameLastnameStudentnumber */.Assignment3;
+using COIS2020.DamonFernandez0813575.Assignment3;
 using COIS2020.StarterCode.Assignment3;
 
 static class Program

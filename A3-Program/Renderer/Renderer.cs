@@ -1,6 +1,6 @@
 // ↓↓                ↓↓
 // ↓↓     FIX ME     ↓↓
-using COIS2020./* FirstnameLastnameStudentnumber */.Assignment3;
+using COIS2020.DamonFernandez0813575.Assignment3;
 // ↑↑                ↑↑
 // ↑↑                ↑↑
 

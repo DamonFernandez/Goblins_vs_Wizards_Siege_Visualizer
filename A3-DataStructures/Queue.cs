@@ -1,10 +1,12 @@
-namespace COIS2020./* FirstnameLastnameStudentnumber */.Assignment3;
+namespace COIS2020.DamonFernandez0813575.Assignment3;
 
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
-public class Queue<T>
+
+public class Queue<T> : IEnumerable<T>
 {
     public const int DefaultCapacity = 8;
 
@@ -17,7 +19,7 @@ public class Queue<T>
     {
         get
         {
-
+            return start == end;
         }
     }
 
@@ -25,8 +27,16 @@ public class Queue<T>
     {
         get
         {
-
-
+            if (IsEmpty)
+            {
+                return 0;
+            }
+            else
+            {
+                return end - start + 1;
+            }
+            // Add 1 since Count is talking about elements, not indices 
+            // like end and start, so we should count from 1
         }
     }
 
@@ -34,17 +44,17 @@ public class Queue<T>
     {
         get
         {
-
-
+            return buffer.Length - start;
         }
 
     }
 
-
-
-
     public Queue() : this(DefaultCapacity)
-    { }
+    {
+        buffer = new T[DefaultCapacity];
+        start = 0;
+        end = 0;
+    }
 
     public Queue(int capacity)
     {
@@ -56,38 +66,55 @@ public class Queue<T>
 
     private void Grow()
     {
+
         Array.Resize(ref buffer, Capacity * 2);
     }
 
     public void Enqueue(T item)
     {
 
-        if ()
-
-
-            // Shift everything up by 1 index to make room for new element 
-            for (int i = Count; i > start; --i)
-            {
-
-            }
-
+        // checking if buffer is full
+        if (Capacity == Count)
+        {
+            Grow();
+        }
 
         buffer[end] = item;
-
-
+        end++;
     }
 
     public T Dequeue()
     {
+        if (IsEmpty)
+        {
+            throw new InvalidOperationException("The buffer is empty");
+        }
 
+        T poppedOffHead = buffer[start]!;
+        buffer[start] = default;
+        start++;
+
+        return poppedOffHead;
     }
 
     public T Peek()
     {
-
+        if (IsEmpty)
+        {
+            throw new InvalidOperationException("The buffer is empty");
+        }
+        return buffer[start]!;
     }
 
 
-    // Implement the Inumerable interface, and actually ankify it this time!
-    Enumerable
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = start; i < end; i++)
+            yield return buffer[i]!;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
