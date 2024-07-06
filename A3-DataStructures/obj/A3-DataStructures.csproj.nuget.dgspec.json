@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj": {}
+    "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj": {}
   },
   "projects": {
-    "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj": {
+    "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj",
+        "projectUniqueName": "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj",
         "projectName": "A3-DataStructures",
-        "projectPath": "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj",
+        "projectPath": "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\A3-DataStructures.csproj",
         "packagesPath": "C:\\Users\\damon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\obj\\",
+        "outputPath": "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-DataStructures\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\damon\\AppData\\Roaming\\NuGet\\NuGet.Config"

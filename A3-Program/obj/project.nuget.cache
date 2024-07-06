@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MGIGsYnTF8A=",
+  "dgSpecHash": "EEM9JMGhueA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-Program\\A3-Program.csproj",
+  "projectFilePath": "c:\\Users\\damon\\Desktop\\Assignment3 (Updated)\\A3-Program\\A3-Program.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damon\\.nuget\\packages\\cyotek.drawing.bitmapfont\\2.0.4\\cyotek.drawing.bitmapfont.2.0.4.nupkg.sha512",
     "C:\\Users\\damon\\.nuget\\packages\\fontstashsharp.base\\1.1.9\\fontstashsharp.base.1.1.9.nupkg.sha512",

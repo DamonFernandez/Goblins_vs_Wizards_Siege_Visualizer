@@ -56,6 +56,7 @@ public class CastleDefender : Visualization
             Goblin currentGoblin = new Goblin();
             BackupGoblins.AddBack(currentGoblin);
         }
+        
     }
 
     private uint calculateNextSpellTime()
@@ -64,16 +65,16 @@ public class CastleDefender : Visualization
 
         if (addOrSubtractDecider >= 0.50f)
         {
-            nextSpellTime = (uint)(15 + (5 * random.Next()));
+            nextSpellTime = (uint)(15 + (5 * random.NextSingle()));
         }
         else
         {
-            nextSpellTime = (uint)(15 - (5 * random.Next()));
+            nextSpellTime = (uint)(15 - (5 * random.NextSingle()));
         }
 
-        return 5;
         return nextSpellTime;
     }
+
 
     private Vector2 calculateGoblinDirection()
     {
@@ -94,7 +95,7 @@ public class CastleDefender : Visualization
         nextSpellTime = calculateNextSpellTime();
         goblinDirection = calculateGoblinDirection();
         Spells = new LinkedList<Spell>();
-        nextWizardEatingTime = 0;
+        nextWizardEatingTime = 5;
         RecoveryQueue = new Queue<Wizard>();
     }
 
@@ -114,6 +115,7 @@ public class CastleDefender : Visualization
                 {
                     Spells.Remove(spellNode);
                 }
+                spellNode = spellNode.Next;
             }
 
         }
@@ -140,7 +142,6 @@ public class CastleDefender : Visualization
                 {
                     if (goblinNode.Item.Colliding(spellNode.Item))
                     {
-                        Node<Spell> tmpSpell = spellNode;
                         GoblinSquad.Remove(goblinNode.Item);
                         Spells.Remove(spellNode.Item);
                         goblinDirection = calculateGoblinDirection();
@@ -182,7 +183,6 @@ public class CastleDefender : Visualization
         nextSpellTime--;
         nextWizardEatingTime--;
 
-        Console.WriteLine($"nextSpellTime: {nextSpellTime}");
 
         if (nextSpellTime <= 0)
         {
@@ -190,7 +190,14 @@ public class CastleDefender : Visualization
             Spells.AddFront(newSpell);
             ActiveWizard.Item.Energy -= ActiveWizard.Item.SpellLevel;
 
-            ActiveWizard = ActiveWizard.Next;
+            if (ActiveWizard.Next != null)
+            {
+                ActiveWizard = ActiveWizard.Next;
+            }
+            else
+            {
+                ActiveWizard = WizardSquad.Head;
+            }
             nextSpellTime = calculateNextSpellTime();
 
             if (ActiveWizard.Item.Energy <= 0)
@@ -215,14 +222,15 @@ public class CastleDefender : Visualization
             WizardSquad.InsertBefore(ActiveWizard, RecoveryQueue.Peek());
             RecoveryQueue.Dequeue();
         }
-        // foreach (Wizard wizard in WizardSquad)
-        // {
+        foreach (Wizard wizard in WizardSquad)
+        {
 
-        //     if (wizard.Energy <= 0)
-        //     {
-        //         WizardSquad.Remove(wizard);
-        //     }
-        // }
+            if (wizard.Energy <= 0)
+            {
+                RecoveryQueue.Enqueue(wizard);
+                WizardSquad.Remove(wizard);
+            }
+        }
     }
 
 
@@ -242,6 +250,8 @@ public class CastleDefender : Visualization
             Pause();
         }
     }
+
+
 
 
     protected override void Update(uint currentFrame)
